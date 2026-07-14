@@ -1,21 +1,20 @@
-# Next.js template
+# OG
 
-This is a Next.js template with shadcn/ui.
+## Content
 
-## Adding components
+- To count pain note for 10 minutes in labour
+- To calculate maturity date by expected date of delivery in AN care
+- To calculate expected date of delivery from last menstrual period
+- To copy and write OT notes, delivery notes, etc.
 
-To add components to your app, run the following command:
+## About
 
-```bash
-npx shadcn@latest add button
-```
+- This web app is to help the house officers of Ob-Gyn wards.
+- I made this app within my current knowledge.
+- If there are mistakes found, please inform me.
 
-This will place the ui components in the `components` directory.
+## Goal
 
-## Using components
+- My intension is to combine medicine with technology and to help both doctors and patients as much as I could.
 
-To use the components in your app, import them as follows:
-
-```tsx
-import { Button } from "@/components/ui/button";
-```
+**2026.07.14 Tuesday**

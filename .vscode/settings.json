@@ -1,0 +1,7 @@
+{
+  "editor.fontSize": 18,
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true
+}
