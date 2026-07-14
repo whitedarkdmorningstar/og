@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import DatePicker from "@/components/common/date-picker"
-import { Alert, AlertTitle } from "@/components/ui/alert"
-import { CardDescription } from "@/components/ui/card"
-import { FieldGroup, FieldLegend } from "@/components/ui/field"
-import { clsx } from "clsx"
-import { Info } from "lucide-react"
-import { useCallback, useState } from "react"
-import { calculateMaturityByEDD } from "./formula"
+import DatePicker from "@/components/common/date-picker";
+import { Alert, AlertTitle } from "@/components/ui/alert";
+import { CardDescription } from "@/components/ui/card";
+import { FieldGroup, FieldLegend } from "@/components/ui/field";
+import { clsx } from "clsx";
+import { Info } from "lucide-react";
+import { useCallback, useState } from "react";
+import { calculateMaturityByEDD } from "./formula";
 
 export default function Maturity() {
-  const [maturity, setMaturity] = useState<string>("")
+  const [maturity, setMaturity] = useState<string>("");
 
   const handleChange = useCallback(
     (day: number, month: number, year: number) => {
-      setMaturity(calculateMaturityByEDD(day, month, year))
+      setMaturity(calculateMaturityByEDD(day, month, year));
     },
-    []
-  )
+    [],
+  );
 
   return (
     <FieldGroup className={"flex-1"}>
@@ -31,7 +31,13 @@ export default function Maturity() {
           className={clsx(maturity.startsWith("Error") && "border-destructive")}
         >
           <AlertTitle>
-            Maturity: <b>{maturity}</b>
+            {maturity.startsWith("Error") ? (
+              maturity
+            ) : (
+              <>
+                Maturity: <b>{maturity}</b>
+              </>
+            )}
           </AlertTitle>
         </Alert>
       )}
@@ -46,5 +52,5 @@ export default function Maturity() {
         days which is received after EDD subtracts today date.
       </CardDescription>
     </FieldGroup>
-  )
+  );
 }

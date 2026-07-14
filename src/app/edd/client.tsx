@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import DatePicker from "@/components/common/date-picker"
-import { Alert, AlertTitle } from "@/components/ui/alert"
-import { CardDescription } from "@/components/ui/card"
-import { FieldGroup, FieldLegend } from "@/components/ui/field"
-import { clsx } from "clsx"
-import { Info } from "lucide-react"
-import { useCallback, useState } from "react"
-import { calculateEDDByLMP } from "./formula"
+import DatePicker from "@/components/common/date-picker";
+import { Alert, AlertTitle } from "@/components/ui/alert";
+import { CardDescription } from "@/components/ui/card";
+import { FieldGroup, FieldLegend } from "@/components/ui/field";
+import { clsx } from "clsx";
+import { Info } from "lucide-react";
+import { useCallback, useState } from "react";
+import { calculateEDDByLMP } from "./formula";
 
 export default function EDD() {
-  const [EDD, setEDD] = useState<string>("")
+  const [EDD, setEDD] = useState<string>("");
 
   const handleChange = useCallback(
     (day: number, month: number, year: number) => {
-      setEDD(calculateEDDByLMP(day, month, year))
+      setEDD(calculateEDDByLMP(day, month, year));
     },
-    []
-  )
+    [],
+  );
 
   return (
     <FieldGroup className={"flex-1"}>
@@ -31,7 +31,13 @@ export default function EDD() {
           className={clsx(EDD.startsWith("Error") && "border-destructive")}
         >
           <AlertTitle>
-            EDD: <b>{EDD}</b>
+            {EDD.startsWith("Error") ? (
+              EDD
+            ) : (
+              <>
+                EDD: <b>{EDD}</b>
+              </>
+            )}
           </AlertTitle>
         </Alert>
       )}
@@ -45,5 +51,5 @@ export default function EDD() {
         EDD is calculated by adding 40 weeks to date of LMP.
       </CardDescription>
     </FieldGroup>
-  )
+  );
 }
