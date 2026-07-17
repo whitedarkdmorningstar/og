@@ -74,11 +74,11 @@ function Row({
   duration?: string
 }) {
   return (
-    <div className={"p-2 w-full flex flex-row items-center border-b"}>
-      <div className={"w-12"}>{no}</div>
-      <div className={"flex grow-1"}>{start}</div>
-      <div className={"flex grow-1"}>{end}</div>
-      <div className={"flex grow-1 text-end"}>{duration}</div>
+    <div className={"p-2 gap-2 w-full flex flex-row items-center border-b"}>
+      <div className={"min-w-12 w-12"}>{no}</div>
+      <div className={"flex-1"}>{start}</div>
+      <div className={"flex-1"}>{end}</div>
+      <div className={"text-right w-16 min-w-16"}>{duration}</div>
     </div>
   )
 }

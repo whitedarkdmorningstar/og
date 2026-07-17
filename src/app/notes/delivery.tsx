@@ -1,3 +1,5 @@
+"use client"
+
 import { Content, getTodayDate } from "./content"
 
 export default function DeliveryNote() {

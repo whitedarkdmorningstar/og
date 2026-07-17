@@ -1,3 +1,5 @@
+"use client"
+
 import { Content, getTodayDate } from "./content"
 
 export default function LSCSNote() {
@@ -29,12 +31,12 @@ export default function LSCSNote() {
           Under aseptic condition & SAB, indwelling catheterization was done.
         </li>
         <li>Abdomen was opened at Joel-Cohen's incision.</li>
-        <li>Sheath, peritoneum and utero-vesical fold was opened.</li>
+        <li>Sheath, peritoneum and utero-vesical fold were opened.</li>
         <li>Bladder was pushed down.</li>
         <li>Uterine incision was given at lower segment.</li>
         <li>
           An active alive _____ baby, Birth weight _____ kg was delivered at
-          _____ am/pm ${getTodayDate()}. Liquor: clear/memonium stained. APGAR
+          _____ am/pm {getTodayDate()}. Liquor: clear/memonium stained. APGAR
           _____.
         </li>
         <li>Active management of 3rd stage was done.</li>
