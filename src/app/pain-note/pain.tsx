@@ -1,18 +1,34 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Trash2Icon } from "lucide-react"
 import { useCallback, useEffect, useMemo, useRef } from "react"
 
 export type PainType = {
   start: number
   end?: number
+  duration?: number
+  id: string
+  hidden: boolean
 }
 
 interface PainProps {
   elapsed: number
 }
 
-export default function Pain({ pain }: { pain: PainType[] }) {
+export default function Pain({
+  pain,
+  deletePain,
+}: {
+  pain: PainType[]
+  deletePain: (id: string) => void
+}) {
+  const filterPain = useMemo(
+    () => pain.filter((item: PainType) => !item.hidden),
+    [pain]
+  )
+
   const renderItem = useCallback(
     (item: PainType, index: number) => (
       <Row
@@ -20,16 +36,17 @@ export default function Pain({ pain }: { pain: PainType[] }) {
         no={(index + 1).toString()}
         start={msToTime(item.start)!}
         end={msToTime(item.end) || "-"}
-        duration={
-          item.end ? msToSecond(item.end)! - msToSecond(item.start)! + "s" : "-"
-        }
+        duration={item.duration ? item.duration + "s" : "-"}
+        deleteItem={() => deletePain(item.id)}
       />
     ),
-    []
+    [deletePain]
   )
 
   const summary = useMemo(() => {
-    const count = pain.length
+    const count = pain.filter(
+      ({ end, duration }) => Boolean(end) && Boolean(duration)
+    ).length
     const maxDuration = Math.max(
       ...pain.map(({ start, end }) =>
         end ? msToSecond(end)! - msToSecond(start)! : 0
@@ -54,7 +71,7 @@ export default function Pain({ pain }: { pain: PainType[] }) {
       <CardContent className={"view"}>
         <Row />
         <div className={"scroll-view"} ref={divRef}>
-          {pain.map(renderItem)}
+          {filterPain.map(renderItem)}
         </div>
         <div className={"p-2"}>{summary}</div>
       </CardContent>
@@ -67,18 +84,29 @@ function Row({
   start = "Start",
   end = "End",
   duration = "Duration",
+  deleteItem,
 }: {
   no?: string
   start?: string
   end?: string
   duration?: string
+  deleteItem?: () => void
 }) {
   return (
     <div className={"p-2 gap-2 w-full flex flex-row items-center border-b"}>
       <div className={"min-w-12 w-12"}>{no}</div>
       <div className={"flex-1"}>{start}</div>
       <div className={"flex-1"}>{end}</div>
-      <div className={"text-right w-16 min-w-16"}>{duration}</div>
+      <div className={"text-right flex-1"}>{duration}</div>
+      <div className={"flex-1 flex justify-end"}>
+        {deleteItem ? (
+          <Button size={"icon"} variant={"destructive"} onClick={deleteItem}>
+            <Trash2Icon />
+          </Button>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   )
 }
@@ -94,7 +122,7 @@ function msToTime(millisecond?: number) {
   return `${min.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`
 }
 
-function msToSecond(millisecond?: number) {
+export function msToSecond(millisecond?: number) {
   if (millisecond === 0) return 0
 
   if (!millisecond) return null

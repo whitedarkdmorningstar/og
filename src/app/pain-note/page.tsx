@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import PainNote from "./client"
+import PainNote from "./pain-note"
 
 export const metadata: Metadata = {
   title: "Pain Note",

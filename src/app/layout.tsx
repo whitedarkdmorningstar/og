@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { Metadata } from "next"
 import { Geist_Mono, Inter } from "next/font/google"
 import NextTopLoader from "nextjs-toploader"
+import { Toaster } from "sonner"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
@@ -44,6 +45,7 @@ export default function RootLayout({
               <main className={"view"}>{children}</main>
               <TabsNavigation />
             </div>
+            <Toaster />
           </SidebarProvider>
         </ThemeProvider>
       </body>
