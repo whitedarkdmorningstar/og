@@ -44,11 +44,11 @@ export default function Pain({
   )
 
   const summary = useMemo(() => {
-    const count = pain.filter(
+    const count = filterPain.filter(
       ({ end, duration }) => Boolean(end) && Boolean(duration)
     ).length
     const maxDuration = Math.max(
-      ...pain.map(({ start, end }) =>
+      ...filterPain.map(({ start, end }) =>
         end ? msToSecond(end)! - msToSecond(start)! : 0
       )
     )
@@ -56,7 +56,7 @@ export default function Pain({
     if (maxDuration === 0 || count === 0) return null
 
     return `${count} in 10 minutes with ${maxDuration} seconds duration`
-  }, [pain])
+  }, [filterPain])
 
   const divRef = useRef<HTMLDivElement | null>(null)
 
@@ -64,7 +64,7 @@ export default function Pain({
     if (divRef.current) {
       divRef.current.scrollTop = divRef.current.scrollHeight
     }
-  }, [pain])
+  }, [filterPain])
 
   return (
     <Card className={"view"}>
