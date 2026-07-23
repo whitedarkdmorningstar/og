@@ -49,8 +49,8 @@ export default function PainNote() {
         className={clsx(
           isRunning
             ? painStarted
-              ? "bg-green-600 hover:bg-green-600/80"
-              : "bg-red-600 hover:bg-red-600/80"
+              ? "bg-red-600 hover:bg-red-600/80 dark:bg-red-800 dark:hover:bg-red-800/80"
+              : "bg-green-600 hover:bg-green-600/80 dark:bg-green-800 dark:hover:bg-green-800/80"
             : "bg-gray-600 hover:bg-gray-600/80"
         )}
         onClick={() => {

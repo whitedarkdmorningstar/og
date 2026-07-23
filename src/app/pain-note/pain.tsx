@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Trash2Icon } from "lucide-react"
 import { useCallback, useEffect, useMemo, useRef } from "react"
+import colors from "tailwindcss/colors"
 
 export type PainType = {
   start: number
@@ -100,8 +101,8 @@ function Row({
       <div className={"text-right flex-1"}>{duration}</div>
       <div className={"flex-1 flex justify-end"}>
         {deleteItem ? (
-          <Button size={"icon"} variant={"destructive"} onClick={deleteItem}>
-            <Trash2Icon />
+          <Button size={"icon"} variant={"ghost"} onClick={deleteItem}>
+            <Trash2Icon color={colors.red[600]} />
           </Button>
         ) : (
           ""
